@@ -43,8 +43,10 @@
 // const stud1 = new Student('Ivan Petrenko', 'web');
 // const stud2 = new Student('Sergiy Koval', 'python');
 // const stud3 = Student.studentBuilder();
-// console.log(stud1.nameIncludes('Ivan'),stud1.nameIncludes('Denysenko'));   // true,false
+// console.log(stud1.nameIncludes('Iv'),stud1.nameIncludes('Denysenko'));   // true,false
 // console.log(stud2.nameIncludes('Andrii'),stud2.nameIncludes('Koval'));   // false,false
+// stud1.direction = 'java'
+// console.log(stud1)
 
 // Task 2
 // Create a Person class that has a constructor that takes name and surname parameters and contains a showFullName() method that displays the person's first and last names.
@@ -133,60 +135,55 @@
 // Andy Ander: 1000.5
 // Tom Tomson: 1584
 
-// class Worker {
-//     constructor(fullName, dayRate, workingDays) {
-//         this.fullName = fullName;
-//         this.dayRate = dayRate;
-//         this.workingDays = workingDays;
-//     }
-//
-//     showSalary() {
-//         return console.log(`${this.fullName} salary: ${this.dayRate * this.workingDays}`);
-//     }
-//     #experience = 1.2;
-//
-//     showSalaryWithExperience() {
-//         this.salary = this.dayRate * this.workingDays * this.#experience;
-//         return console.log(`${this.fullName} salary: ${this.dayRate * this.workingDays * this.#experience}`);
-//     }
-//
-//     get showExp() {
-//         return this.#experience;
-//     }
-//     set setExp(value) {
-//         this.#experience = value;
-//     }
-//
-// }
-// const worker1 = new Worker('John Johnson', 20, 23);
-// console.log(worker1.fullName);
-// worker1.showSalary();
-// console.log(`New experience: ${worker1.showExp}`);
-// worker1.showSalaryWithExperience();
-// worker1.setExp = 1.5;
-// console.log(`New experience: ${worker1.showExp}`);
-// worker1.showSalaryWithExperience();
-//
-// const worker2 = new Worker('Tom Tomson', 48, 22);
-// console.log(worker2.fullName);
-// worker2.showSalary();
-// console.log(`New experience: ${worker2.showExp}`);
-// worker2.showSalaryWithExperience();
-// worker2.setExp = 1.5;
-// console.log(`New experience: ${worker2.showExp}`);
-// worker2.showSalaryWithExperience();
-//
-// const worker3 = new Worker('Andy Ander', 29, 23);
-// console.log(worker3.fullName);
-// worker3.showSalary();
-// console.log(`New experience: ${worker3.showExp}`);
-// worker3.showSalaryWithExperience();
-// worker3.setExp = 1.5;
-// console.log(`New experience: ${worker3.showExp}`);
-// worker3.showSalaryWithExperience();
-//
-//
-// const salarySorted = [worker1,worker2,worker3].sort(
-//     (a, b) => a.salary - b.salary).map((el,) => {
-//     console.log(`${el.fullName}: ${el.salary}`);
-// });
+class Worker {
+    constructor(fullName, dayRate, workingDays) {
+        this.fullName = fullName;
+        this.dayRate = dayRate;
+        this.workingDays = workingDays;
+    }
+
+    showSalary() {
+        return console.log(`${this.fullName} salary: ${this.dayRate * this.workingDays}`);
+    }
+    #experience = 1.2;
+
+    showSalaryWithExperience() {
+        this.salary = this.dayRate * this.workingDays * this.#experience;
+        return console.log(`${this.fullName} salary: ${this.dayRate * this.workingDays * this.#experience}`);
+    }
+
+    get showExp() {
+        return this.#experience;
+    }
+    set setExp(value) {
+        this.#experience = value;
+    }
+    static staticWorker(workers){
+
+        console.log(workers.fullName);
+        workers.showSalary();
+        console.log(`New experience: ${workers.showExp}`);
+        workers.showSalaryWithExperience();
+        workers.setExp = 1.5;
+        console.log(`New experience: ${workers.showExp}`);
+        workers.showSalaryWithExperience();
+    }
+
+}
+
+const workers = [
+    new Worker('John Johnson', 20, 23),
+    new Worker('Tom Tomson', 48, 22),
+    new Worker('Andy Ander', 29, 23),
+    new Worker('Petro Petrenko', 50, 30),
+];
+
+for (let i = 0; i < workers.length; i++){
+    let worker = workers[i];
+    Worker.staticWorker(worker);
+}
+
+workers.sort(
+    (a, b) => a.salary - b.salary).map((el,) => {
+    console.log(`${el.fullName}: ${el.salary}`);
+})
